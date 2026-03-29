@@ -590,7 +590,7 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
     <div class="clue-card">
       <div class="clue-number">✦ Pista 4 de 4 ✦</div>
       <p class="clue-text">«¿Y al final… el año en el que tú y yo dejamos de ser solo coincidencia.»</p>
-      <p style="font-size:.85rem;color:rgba(245,230,208,.42);margin-bottom:14px;font-style:italic">El año en que nuestro ‘nosotros’ dejó de ser solo un pensamiento.</p>
+      <p style="font-size:.85rem;color:rgba(245,230,208,.42);margin-bottom:14px;font-style:italic">El año en que nuestro 'nosotros' dejó de ser solo un pensamiento.</p>
       <div class="clue-answer-area">
         <input class="clue-input" id="ci4" type="text" placeholder="El número..." maxlength="10">
         <button class="clue-btn" onclick="checkClue(4)">Verificar</button>
@@ -766,14 +766,14 @@ function addKiss(){kc++;document.getElementById('kiss-count').textContent=kc;doc
 let kc6=0;
 function addKiss6(){kc6++;document.getElementById('kiss-count-6').textContent=kc6;const m=['','Para ti siempre 💋','Y más... 🔥','Sin límite. Como mis ganas de ti 🖤','Ya ni cuento, solo los mando ✨'];document.getElementById('kiss-msg-6').textContent=m[Math.min(kc6,4)];}
  
-// PUZZLE — contraseña: amorcito (am+or+ci+to)
+// PUZZLE — contraseña: 24DDiseñaZina25
 const PASS='24DDiseñaZina25';
 const pcs={1:'24D',2:'Diseña',3:'Zina',4:'25'};
 let got={1:false,2:false,3:false,4:false};
 function checkClue(n){const v=document.getElementById('ci'+n).value.trim();if(!v.length)return;got[n]=true;document.getElementById('piece'+n).classList.add('show');updP();}
 function updP(){let s='';for(let i=1;i<=4;i++)s+=got[i]?`[ ${pcs[i]} ] `:'[ _ ] ';document.getElementById('collected-pieces').textContent=s.trim();}
 function checkPassword(){
-  const pw=document.getElementById('final-pw').value.trim().toLowerCase();
+  const pw=document.getElementById('final-pw').value.trim();
   const err=document.getElementById('pw-error');
   if(pw===PASS){err.style.display='none';openFinal();}
   else{err.style.display='block';document.getElementById('final-pw').style.borderColor='rgba(192,0,26,.9)';setTimeout(()=>{document.getElementById('final-pw').style.borderColor='';},1000);}
