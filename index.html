@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Días Contigo 🖤</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--rojo:#c0001a;--rojo-oscuro:#7a0010;--rojo-brillante:#ff1a35;--negro:#0a0005;--negro-profundo:#050003;--dorado:#c9a84c;--dorado-claro:#e8c96a;--crema:#f5e6d0;--gris-oscuro:#1a0a10;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--negro-profundo);color:var(--crema);font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden;}
+#canvas-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+ 
+/* INTRO */
+#intro{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;z-index:1;overflow:hidden;}
+.intro-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(192,0,26,.22) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulseGlow 4s ease-in-out infinite;}
+@keyframes pulseGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.18);opacity:1}}
+.rose-decor{font-size:3rem;animation:floatRose 3s ease-in-out infinite;display:block;margin-bottom:12px;filter:drop-shadow(0 0 16px rgba(192,0,26,.9));}
+@keyframes floatRose{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+.intro-eyebrow{font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:var(--dorado);margin-bottom:18px;opacity:0;animation:fadeUp 1s ease forwards .5s;}
+.intro-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,11vw,7.5rem);font-weight:900;line-height:1;background:linear-gradient(135deg,var(--crema) 0%,var(--dorado-claro) 40%,var(--rojo-brillante) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;opacity:0;animation:fadeUp 1s ease forwards .8s;}
+.intro-subtitle{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1.1rem,3vw,1.6rem);color:rgba(245,230,208,.75);margin-bottom:32px;opacity:0;animation:fadeUp 1s ease forwards 1.1s;}
+.heart-div{display:flex;align-items:center;gap:15px;margin:22px auto;width:fit-content;opacity:0;animation:fadeUp 1s ease forwards 1.4s;}
+.heart-div::before,.heart-div::after{content:'';width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--dorado),transparent);}
+.heart-div span{color:var(--rojo);font-size:1.3rem;animation:heartbeat 1.5s ease-in-out infinite;filter:drop-shadow(0 0 10px var(--rojo));}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.38)}}
+.intro-desc{max-width:520px;font-size:clamp(1rem,2.5vw,1.2rem);line-height:1.9;color:rgba(245,230,208,.82);margin-bottom:48px;font-style:italic;opacity:0;animation:fadeUp 1s ease forwards 1.7s;}
+.btn-enter{display:inline-block;padding:16px 52px;background:linear-gradient(135deg,var(--rojo-oscuro),var(--rojo));border:1px solid rgba(201,168,76,.4);color:var(--crema);font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;transition:all .4s;opacity:0;animation:fadeUp 1s ease forwards 2s;box-shadow:0 0 32px rgba(192,0,26,.38);}
+.btn-enter::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transition:left .5s;}
+.btn-enter:hover::before{left:100%;}
+.btn-enter:hover{box-shadow:0 0 58px rgba(192,0,26,.7);transform:translateY(-2px);border-color:var(--dorado);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+ 
+/* DAYS */
+#days-section{position:relative;z-index:1;padding:60px 20px 100px;max-width:1100px;margin:0 auto;}
+.days-header{text-align:center;margin-bottom:52px;}
+.days-header h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:700;color:var(--crema);margin-bottom:10px;}
+.days-header p{color:var(--dorado);font-style:italic;letter-spacing:.15em;font-size:1rem;}
+.days-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+.day-card:nth-child(7){grid-column:1/-1;}
+.day-card{position:relative;border:1px solid rgba(192,0,26,.3);background:linear-gradient(145deg,rgba(20,5,12,.95),rgba(10,0,5,.98));overflow:hidden;cursor:pointer;transition:all .5s;color:inherit;display:block;min-height:200px;}
+.day-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(192,0,26,.1),transparent 60%);opacity:0;transition:opacity .4s;}
+.day-card:hover::before{opacity:1;}
+.day-card:hover{border-color:rgba(192,0,26,.75);transform:translateY(-5px);box-shadow:0 22px 65px rgba(192,0,26,.28),0 0 0 1px rgba(201,168,76,.12);}
+.day-card-inner{padding:35px 30px;position:relative;z-index:1;}
+.day-number{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:900;color:rgba(192,0,26,.18);line-height:1;position:absolute;top:18px;right:22px;transition:color .4s;}
+.day-card:hover .day-number{color:rgba(192,0,26,.42);}
+.day-label{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--dorado);margin-bottom:12px;display:block;}
+.day-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;color:var(--crema);margin-bottom:12px;line-height:1.2;}
+.day-emoji{font-size:1.9rem;margin-bottom:15px;display:block;filter:drop-shadow(0 0 7px rgba(192,0,26,.65));}
+.day-desc{font-size:.95rem;color:rgba(245,230,208,.6);font-style:italic;line-height:1.65;}
+.day-arrow{position:absolute;bottom:20px;right:25px;color:var(--rojo);font-size:1.2rem;opacity:0;transform:translateX(-10px);transition:all .3s;}
+.day-card:hover .day-arrow{opacity:1;transform:translateX(0);}
+.day-card.day7{background:linear-gradient(145deg,rgba(40,0,15,.98),rgba(20,0,8,.99));border-color:rgba(201,168,76,.3);min-height:250px;}
+.day-card.day7:hover{border-color:var(--dorado);box-shadow:0 22px 80px rgba(201,168,76,.2),0 0 0 1px rgba(201,168,76,.2);}
+.day-card.day7 .day-number{color:rgba(201,168,76,.2);}
+.day-card.day7:hover .day-number{color:rgba(201,168,76,.42);}
+.day-card.day7 .day-title{background:linear-gradient(135deg,var(--crema),var(--dorado-claro));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ornament-line{text-align:center;margin:55px 0 30px;color:var(--dorado);font-size:1.2rem;letter-spacing:.5em;opacity:.42;}
+footer{position:relative;z-index:1;text-align:center;padding:40px 20px;border-top:1px solid rgba(192,0,26,.12);color:rgba(245,230,208,.3);font-size:.8rem;letter-spacing:.2em;}
+ 
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,0,3,.97);z-index:1000;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.modal-overlay.active{display:block;}
+.modal-content{position:relative;max-width:750px;margin:0 auto;padding:30px 20px 90px;min-height:100vh;}
+.modal-back{display:inline-flex;align-items:center;gap:8px;color:var(--dorado);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;margin-bottom:40px;background:none;border:none;font-family:inherit;opacity:.7;transition:opacity .3s;padding:10px 0;}
+.modal-back:hover{opacity:1;}
+.modal-day-badge{display:inline-block;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--dorado);border:1px solid rgba(201,168,76,.3);padding:6px 18px;margin-bottom:20px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,7vw,3.5rem);font-weight:900;color:var(--crema);line-height:1.1;margin-bottom:8px;}
+.modal-divider{width:80px;height:2px;background:linear-gradient(90deg,var(--rojo),var(--dorado));margin:20px 0 38px;}
+ 
+/* CARTA */
+.love-letter{background:linear-gradient(145deg,rgba(35,8,18,.95),rgba(20,3,10,.98));border:1px solid rgba(201,168,76,.22);padding:42px 38px;position:relative;font-family:'IM Fell English',serif;font-style:italic;margin-bottom:25px;}
+.love-letter::before{content:'"';position:absolute;top:-15px;left:30px;font-size:8rem;color:rgba(192,0,26,.1);font-family:'Playfair Display',serif;line-height:1;}
+.love-letter-text{font-size:clamp(1rem,2.5vw,1.15rem);line-height:2.1;color:rgba(245,230,208,.92);position:relative;z-index:1;}
+.love-letter-sign{text-align:right;margin-top:28px;font-size:1.15rem;color:var(--dorado);}
+ 
+/* ACTIVITY */
+.activity{background:rgba(20,5,12,.8);border:1px solid rgba(192,0,26,.2);padding:30px;margin-bottom:22px;overflow:hidden;transition:border-color .3s;}
+.activity:hover{border-color:rgba(192,0,26,.5);}
+.activity-header{display:flex;align-items:center;gap:15px;margin-bottom:22px;}
+.activity-icon{font-size:2rem;filter:drop-shadow(0 0 8px rgba(192,0,26,.5));}
+.activity-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--crema);}
+.activity-subtitle{font-size:.8rem;color:var(--dorado);letter-spacing:.15em;text-transform:uppercase;}
+ 
+/* RULETA */
+.roulette-btn{display:block;width:100%;max-width:300px;margin:8px auto;padding:14px 40px;background:linear-gradient(135deg,var(--rojo-oscuro),var(--rojo));border:1px solid rgba(201,168,76,.3);color:var(--crema);font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.roulette-btn:hover{box-shadow:0 0 35px rgba(192,0,26,.58);transform:translateY(-2px);}
+.result-display{margin-top:22px;padding:25px;border:1px solid rgba(201,168,76,.2);background:rgba(10,0,5,.8);display:none;font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--crema);text-align:center;line-height:1.65;animation:revealR .5s ease;}
+.result-display.show{display:block;}
+@keyframes revealR{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+ 
+/* QUIZ */
+.quiz-question{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--crema);margin-bottom:18px;line-height:1.45;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;}
+.quiz-opt{padding:14px 20px;border:1px solid rgba(192,0,26,.25);background:rgba(20,5,12,.6);color:rgba(245,230,208,.8);cursor:pointer;transition:all .3s;font-family:'Cormorant Garamond',serif;font-size:1rem;text-align:left;}
+.quiz-opt:hover{border-color:var(--rojo);color:var(--crema);background:rgba(192,0,26,.1);}
+.quiz-opt.correct{border-color:var(--dorado);background:rgba(201,168,76,.15);color:var(--dorado-claro);}
+.quiz-opt.wrong{border-color:rgba(192,0,26,.35);opacity:.45;}
+.quiz-feedback{margin-top:14px;padding:14px;font-style:italic;color:var(--dorado);display:none;font-size:1rem;line-height:1.65;}
+ 
+/* SCRATCH */
+.scratch-container{position:relative;width:100%;max-width:400px;margin:0 auto;display:block;}
+.scratch-canvas-wrap{position:relative;width:100%;overflow:hidden;}
+.scratch-reveal{width:100%;height:180px;background:linear-gradient(135deg,var(--rojo-oscuro),var(--negro));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--crema);text-align:center;padding:20px;line-height:1.65;}
+canvas.scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;touch-action:none;}
+.scratch-hint{text-align:center;margin-top:10px;font-size:.85rem;color:rgba(245,230,208,.32);font-style:italic;}
+ 
+/* KISS */
+.kiss-counter{text-align:center;padding:18px 0;}
+.kiss-count-display{font-family:'Playfair Display',serif;font-size:5rem;color:var(--rojo);text-shadow:0 0 30px rgba(192,0,26,.55);margin:18px 0;display:block;animation:heartbeat 1.5s ease-in-out infinite;}
+.kiss-btn{width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,var(--rojo),var(--rojo-oscuro));border:2px solid rgba(201,168,76,.3);font-size:2.5rem;cursor:pointer;transition:all .2s;box-shadow:0 0 30px rgba(192,0,26,.3);margin:0 auto;display:block;}
+.kiss-btn:active{transform:scale(.9);box-shadow:0 0 58px rgba(192,0,26,.7);}
+.kiss-msg{margin-top:14px;font-style:italic;color:var(--dorado);font-size:1rem;min-height:30px;}
+ 
+/* FLIP CARD */
+.cards-game{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px 0;}
+.pick-card{aspect-ratio:2/3;position:relative;cursor:pointer;perspective:600px;}
+.pick-card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .65s;}
+.pick-card.flipped .pick-card-inner{transform:rotateY(180deg);}
+.pick-card-front,.pick-card-back{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;}
+.pick-card-front{background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4);font-size:2rem;}
+.pick-card-back{background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:var(--crema);line-height:1.45;}
+ 
+/* POLAROID */
+.polaroid-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;padding:8px 0;}
+.polaroid{background:#fff;padding:14px 14px 38px;box-shadow:0 8px 30px rgba(0,0,0,.55);transform:rotate(var(--rot,-2deg));transition:transform .3s;cursor:pointer;}
+.polaroid:hover{transform:rotate(0deg) scale(1.04);}
+.polaroid-img{width:100%;aspect-ratio:1;background:linear-gradient(135deg,var(--rojo-oscuro),var(--negro));display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:10px;}
+.polaroid-caption{font-family:'IM Fell English',serif;font-style:italic;text-align:center;color:#333;font-size:.88rem;line-height:1.3;}
+ 
+/* PUZZLE */
+.puzzle-clues{display:grid;gap:16px;margin-bottom:32px;}
+.clue-card{background:rgba(20,5,12,.8);border:1px solid rgba(192,0,26,.3);padding:22px;}
+.clue-number{font-size:.7rem;letter-spacing:.3em;color:var(--dorado);text-transform:uppercase;margin-bottom:10px;}
+.clue-text{font-style:italic;color:rgba(245,230,208,.82);font-size:1rem;line-height:1.65;margin-bottom:14px;}
+.clue-answer-area{display:flex;gap:10px;flex-wrap:wrap;}
+.clue-input{flex:1;min-width:150px;padding:10px 15px;background:rgba(0,0,0,.5);border:1px solid rgba(192,0,26,.3);color:var(--crema);font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;transition:border-color .3s;}
+.clue-input:focus{border-color:var(--rojo);}
+.clue-input::placeholder{color:rgba(245,230,208,.3);}
+.clue-btn{padding:10px 20px;background:linear-gradient(135deg,var(--rojo-oscuro),var(--rojo));border:none;color:var(--crema);font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.clue-btn:hover{box-shadow:0 0 22px rgba(192,0,26,.45);}
+.piece-revealed{display:none;margin-top:12px;padding:10px 20px;background:rgba(192,0,26,.14);border:1px solid rgba(201,168,76,.3);text-align:center;}
+.piece-revealed.show{display:block;}
+.piece-fragment{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dorado);letter-spacing:.3em;font-weight:700;}
+.piece-label{font-size:.7rem;color:rgba(245,230,208,.4);text-transform:uppercase;letter-spacing:.2em;margin-top:5px;}
+.password-section{margin-top:38px;padding:30px;border:1px solid rgba(201,168,76,.3);background:rgba(10,0,5,.92);text-align:center;}
+.password-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--crema);margin-bottom:10px;}
+.password-hint{font-style:italic;color:rgba(245,230,208,.5);font-size:.9rem;margin-bottom:18px;}
+.password-input{width:100%;max-width:320px;padding:14px 20px;background:rgba(0,0,0,.6);border:1px solid rgba(192,0,26,.4);color:var(--crema);font-family:'Playfair Display',serif;font-size:1.2rem;text-align:center;letter-spacing:.25em;outline:none;display:block;margin:0 auto 15px;transition:border-color .3s;}
+.password-input:focus{border-color:var(--dorado);}
+.password-submit{display:inline-block;padding:14px 42px;background:linear-gradient(135deg,var(--rojo-oscuro),var(--rojo));border:1px solid rgba(201,168,76,.3);color:var(--crema);font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.password-submit:hover{box-shadow:0 0 32px rgba(192,0,26,.55);}
+.password-error{margin-top:12px;color:rgba(255,80,80,.85);font-style:italic;display:none;}
+ 
+/* FINAL */
+.final-letter-overlay{position:fixed;inset:0;background:rgba(3,0,2,.98);z-index:2000;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.final-letter-overlay.open{display:block;}
+.final-letter-content{max-width:680px;margin:0 auto;padding:60px 28px 100px;text-align:center;}
+.final-letter-rose{font-size:4rem;display:block;margin-bottom:28px;animation:floatRose 3s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(192,0,26,.88));}
+.final-letter-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,7vw,3.5rem);font-weight:900;color:var(--crema);margin-bottom:8px;}
+.final-letter-subtitle{font-style:italic;color:var(--dorado);font-size:1rem;letter-spacing:.2em;margin-bottom:45px;}
+.final-letter-paper{background:linear-gradient(145deg,rgba(40,10,20,.98),rgba(20,3,10,.99));border:1px solid rgba(201,168,76,.2);padding:50px 40px;text-align:left;position:relative;}
+.final-letter-paper::before{content:'❝';position:absolute;top:-20px;left:38px;font-size:6rem;color:rgba(192,0,26,.12);font-family:'Playfair Display',serif;line-height:1;}
+.final-letter-body{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.2rem);line-height:2.2;color:rgba(245,230,208,.95);position:relative;z-index:1;}
+.final-letter-body p{margin-bottom:20px;}
+.final-sign{text-align:right;margin-top:38px;font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dorado);font-style:italic;}
+.close-final{display:inline-block;margin-top:48px;padding:14px 40px;background:none;border:1px solid rgba(201,168,76,.4);color:var(--dorado);font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.close-final:hover{background:rgba(201,168,76,.1);}
+ 
+@media(max-width:600px){
+  .days-grid{grid-template-columns:1fr}
+  .day-card:nth-child(7){grid-column:1}
+  .love-letter{padding:28px 18px}
+  .activity{padding:20px 16px}
+  .modal-content{padding:20px 14px 80px}
+  .final-letter-paper{padding:28px 18px}
+  .cards-game{gap:8px}
+  .polaroid-gallery{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<canvas id="canvas-bg"></canvas>
+ 
+<!-- INTRO -->
+<section id="intro">
+  <div class="intro-glow"></div>
+  <span class="rose-decor">🌹</span>
+  <p class="intro-eyebrow">Solo para ti, mi amor</p>
+  <h1 class="intro-title">7 Días<br>Contigo</h1>
+  <p class="intro-subtitle">una semana que preparé pensando en ti</p>
+  <div class="heart-div"><span>♥</span></div>
+  <p class="intro-desc">Siete días. Siete regalos. Siete formas de decirte que aunque estemos lejos, lo que siento por ti no conoce distancia.</p>
+  <button class="btn-enter" onclick="document.getElementById('days-section').scrollIntoView({behavior:'smooth'})">Abre tu regalo ✦</button>
+</section>
+ 
+<!-- DAYS -->
+<section id="days-section">
+  <div class="days-header">
+    <h2>Tu Semana Especial</h2>
+    <p>✦ cada día, algo nuevo te espera ✦</p>
+  </div>
+  <div class="days-grid">
+    <div class="day-card" onclick="openDay(1)">
+      <div class="day-card-inner"><span class="day-number">01</span><span class="day-label">Día Uno</span><span class="day-emoji">💌</span><h3 class="day-title">El Primer Latido</h3><p class="day-desc">Donde todo empezó. Palabras, confesiones y algo que te va a hacer sonreír.</p></div><span class="day-arrow">→</span>
+    </div>
+    <div class="day-card" onclick="openDay(2)">
+      <div class="day-card-inner"><span class="day-number">02</span><span class="day-label">Día Dos</span><span class="day-emoji">🔥</span><h3 class="day-title">La Llama</h3><p class="day-desc">El más atrevido. El que hace arder la distancia.</p></div><span class="day-arrow">→</span>
+    </div>
+    <div class="day-card" onclick="openDay(3)">
+      <div class="day-card-inner"><span class="day-number">03</span><span class="day-label">Día Tres</span><span class="day-emoji">🌙</span><h3 class="day-title">Noche de Confesiones</h3><p class="day-desc">Cosas que siento y que merecen ser dichas. Solo para ti.</p></div><span class="day-arrow">→</span>
+    </div>
+    <div class="day-card" onclick="openDay(4)">
+      <div class="day-card-inner"><span class="day-number">04</span><span class="day-label">Día Cuatro</span><span class="day-emoji">🎲</span><h3 class="day-title">Ruleta de Deseos</h3><p class="day-desc">Gira y descubre. Planes, retos y todo lo que quiero hacer contigo.</p></div><span class="day-arrow">→</span>
+    </div>
+    <div class="day-card" onclick="openDay(5)">
+      <div class="day-card-inner"><span class="day-number">05</span><span class="day-label">Día Cinco</span><span class="day-emoji">📸</span><h3 class="day-title">Nuestra Galería</h3><p class="day-desc">Momentos que llevo grabados. Memorias que me hacen sonreír solo.</p></div><span class="day-arrow">→</span>
+    </div>
+    <div class="day-card" onclick="openDay(6)">
+      <div class="day-card-inner"><span class="day-number">06</span><span class="day-label">Día Seis</span><span class="day-emoji">✨</span><h3 class="day-title">Promesas de Verdad</h3><p class="day-desc">Lo que te juro. Lo que te sueño. Lo que te espera cuando estemos juntos.</p></div><span class="day-arrow">→</span>
+    </div>
+    <div class="day-card day7" onclick="openDay(7)">
+      <div class="day-card-inner"><span class="day-number">07</span><span class="day-label">El Gran Final · Día Siete</span><span class="day-emoji">🔐</span><h3 class="day-title">El Cofre de los Secretos</h3><p class="day-desc">Resuelve las pistas. Encuentra los fragmentos. Descifra la contraseña y descubre lo que guardo solo para ti.</p></div><span class="day-arrow">→</span>
+    </div>
+  </div>
+  <div class="ornament-line">✦ ♥ ✦</div>
+</section>
+<footer><p>Hecho con todo el amor y todo el fuego que tengo · Solo para ti 🖤</p></footer>
+ 
+<!-- ===== MODAL 1 ===== -->
+<div class="modal-overlay" id="modal-1">
+<div class="modal-content">
+  <button class="modal-back" onclick="closeDay()">← Volver</button>
+  <span class="modal-day-badge">Día Uno</span>
+  <h2 class="modal-title">El Primer Latido 💌</h2>
+  <div class="modal-divider"></div>
+ 
+  <div class="love-letter">
+    <div class="love-letter-text">
+      <!-- ✏️ EDITA ESTA CARTA — DÍA 1 -->
+      Mi amor,<br><br>
+      No sé qué fue primero: si el corazón acelerado o las ganas de no soltar el teléfono cuando hablábamos. Pero desde que llegaste tú, algo en mí cambió para siempre.<br><br>
+      Me gustas de una forma que no puedo explicar del todo. Me gustas cuando escribes rápido porque estás emocionada. Me gustas cuando te quedas callada antes de decir algo importante. Me gustas en todas las versiones que he conocido de ti.<br><br>
+      Y hay noches que no puedo dormir pensando en cómo se sentiría tenerte cerca. De verdad cerca. Sin pantalla de por medio.
+    </div>
+    <div class="love-letter-sign">— El que siempre va a quererte 🌹</div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">❓</span><div><div class="activity-title">¿Me conoces bien?</div><div class="activity-subtitle">Un quiz sobre nosotros</div></div></div>
+    <div class="quiz-container">
+      <div class="quiz-question">¿Qué es lo que más me cuesta de la distancia?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="checkQ(this,false,'')">No hablar contigo</button>
+        <button class="quiz-opt" onclick="checkQ(this,true,'💛 Exacto. No poder tocarte. No poder abrazarte cuando quiero. Eso es lo que más duele de verdad.')">No poder tocarte</button>
+        <button class="quiz-opt" onclick="checkQ(this,false,'')">Los husos horarios</button>
+        <button class="quiz-opt" onclick="checkQ(this,false,'')">No verte en persona</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🎴</span><div><div class="activity-title">Rasca el Sobre</div><div class="activity-subtitle">Hay algo escondido para ti</div></div></div>
+    <div class="scratch-container">
+      <div class="scratch-canvas-wrap">
+        <div class="scratch-reveal">💌<br>Esta noche, cuando cierres los ojos,<br>quiero que pienses en mí.<br>Porque yo voy a estar pensando en ti.</div>
+        <canvas class="scratch-canvas" id="scratch1" height="180"></canvas>
+      </div>
+      <p class="scratch-hint">Desliza el dedo para revelar 🖤</p>
+    </div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">💋</span><div><div class="activity-title">Mándame Besos</div><div class="activity-subtitle">Presiona cuántos quieras darme hoy</div></div></div>
+    <div class="kiss-counter">
+      <span class="kiss-count-display" id="kiss-count">0</span>
+      <button class="kiss-btn" onclick="addKiss()">💋</button>
+      <p class="kiss-msg" id="kiss-msg"></p>
+    </div>
+  </div>
+</div>
+</div>
+ 
+<!-- ===== MODAL 2 ===== -->
+<div class="modal-overlay" id="modal-2">
+<div class="modal-content">
+  <button class="modal-back" onclick="closeDay()">← Volver</button>
+  <span class="modal-day-badge">Día Dos</span>
+  <h2 class="modal-title">La Llama 🔥</h2>
+  <div class="modal-divider"></div>
+ 
+  <div class="love-letter">
+    <div class="love-letter-text">
+      <!-- ✏️ EDITA ESTA CARTA — DÍA 2 -->
+      Mi amor,<br><br>
+      Hay algo en ti que enciende algo en mí que no sé apagar. No es solo que seas guapa, aunque lo eres muchísimo. Es que eres de esas personas que cuando están cerca hacen que el aire cambie.<br><br>
+      Pienso en el día que nos veamos. Y no te voy a mentir: pienso en todo. En abrazarte hasta que no pueda más. En besarte despacio. En no querer separarme ni un segundo.<br><br>
+      Hoy el día es tuyo. Y mío. Y un poco de todo lo que va a pasar cuando por fin estemos juntos. 🔥
+    </div>
+    <div class="love-letter-sign">— El que ya te piensa demasiado 🔥</div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🃏</span><div><div class="activity-title">Elige una Carta</div><div class="activity-subtitle">Cada una tiene algo para ti</div></div></div>
+    <div class="cards-game">
+      <div class="pick-card" onclick="flipCard(this)"><div class="pick-card-inner"><div class="pick-card-front">🖤</div><div class="pick-card-back">Escríbeme algo esta noche que solo yo pueda leer.</div></div></div>
+      <div class="pick-card" onclick="flipCard(this)"><div class="pick-card-inner"><div class="pick-card-front">🔥</div><div class="pick-card-back">Dime qué llevas puesto ahora mismo. No me escondas nada. 😏</div></div></div>
+      <div class="pick-card" onclick="flipCard(this)"><div class="pick-card-inner"><div class="pick-card-front">💋</div><div class="pick-card-back">Mándame una foto de tu sonrisa. La extraño tanto.</div></div></div>
+      <div class="pick-card" onclick="flipCard(this)"><div class="pick-card-inner"><div class="pick-card-front">🌹</div><div class="pick-card-back">Cuéntame qué es lo que más extrañas de no poder tocarme.</div></div></div>
+      <div class="pick-card" onclick="flipCard(this)"><div class="pick-card-inner"><div class="pick-card-front">✨</div><div class="pick-card-back">Cierra los ojos. Imagina que estoy ahí contigo. ¿Qué harías primero?</div></div></div>
+      <div class="pick-card" onclick="flipCard(this)"><div class="pick-card-inner"><div class="pick-card-front">💌</div><div class="pick-card-back">Dime el pensamiento más atrevido que has tenido sobre nosotros.</div></div></div>
+    </div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🎲</span><div><div class="activity-title">Ruleta de Mensajes</div><div class="activity-subtitle">Gira y envíame lo que salga 😏</div></div></div>
+    <button class="roulette-btn" onclick="spinRoulette('r2', mensajes)">🎲 Girar</button>
+    <div class="result-display" id="r2"></div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🔐</span><div><div class="activity-title">Secreto del Día 2</div><div class="activity-subtitle">Solo para tus ojos</div></div></div>
+    <div class="scratch-container">
+      <div class="scratch-canvas-wrap">
+        <div class="scratch-reveal">🔥<br>Hay noches que no puedo dormir<br>pensando en lo que te haría<br>si estuvieras aquí.</div>
+        <canvas class="scratch-canvas" id="scratch2" height="180"></canvas>
+      </div>
+      <p class="scratch-hint">Rasca 🖤</p>
+    </div>
+  </div>
+</div>
+</div>
+ 
+<!-- ===== MODAL 3 ===== -->
+<div class="modal-overlay" id="modal-3">
+<div class="modal-content">
+  <button class="modal-back" onclick="closeDay()">← Volver</button>
+  <span class="modal-day-badge">Día Tres</span>
+  <h2 class="modal-title">Noche de Confesiones 🌙</h2>
+  <div class="modal-divider"></div>
+ 
+  <div class="love-letter">
+    <div class="love-letter-text">
+      <!-- ✏️ EDITA ESTA CARTA — DÍA 3 -->
+      Amor,<br><br>
+      Hay cosas que no digo porque me da miedo que suenen demasiado intensas. Pero esta noche me vale. Esta noche las digo todas.<br><br>
+      Te pienso cuando escucho una canción buena y lo primero que quiero es mandártela. Te pienso cuando me pasa algo, porque tú eres lo primero que quiero compartir.<br><br>
+      Y te pienso de otra forma también. De esa forma que no se dice en voz alta pero que existe. Y que cada vez existe más.
+    </div>
+    <div class="love-letter-sign">— El que no puede dejar de pensarte 🌙</div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🕯️</span><div><div class="activity-title">Mis Confesiones</div><div class="activity-subtitle">Toca cada una para revelarla</div></div></div>
+    <div style="display:grid;gap:12px;">
+      <div class="pick-card" style="aspect-ratio:auto;min-height:80px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:80px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">💬 Confesión #1</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px">Me gustas más de lo que me atrevo a decirte en voz alta.</div></div></div>
+      <div class="pick-card" style="aspect-ratio:auto;min-height:80px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:80px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">💬 Confesión #2</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px">Cuando me mandas una foto y estás especialmente guapa, me cuesta concentrarme el resto del día.</div></div></div>
+      <div class="pick-card" style="aspect-ratio:auto;min-height:80px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:80px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">💬 Confesión #3</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px">Hay partes de ti que se me han quedado grabadas en la cabeza y no me quiero sacar.</div></div></div>
+      <div class="pick-card" style="aspect-ratio:auto;min-height:80px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:80px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">💬 Confesión #4</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px">Cuando pienso en el futuro, en todas las versiones apareces tú.</div></div></div>
+      <div class="pick-card" style="aspect-ratio:auto;min-height:80px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:80px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">💬 Confesión #5</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px">Extraño cosas que todavía no he tenido contigo. Y eso dice todo.</div></div></div>
+    </div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🌙</span><div><div class="activity-title">Secreto de Medianoche</div><div class="activity-subtitle">Solo para tus ojos</div></div></div>
+    <div class="scratch-container">
+      <div class="scratch-canvas-wrap">
+        <div class="scratch-reveal">🌙<br>Si pudiera teletransportarme ahora mismo,<br>aparecería justo donde estás tú.<br>Y no te daría tiempo ni de preguntar.</div>
+        <canvas class="scratch-canvas" id="scratch3" height="180"></canvas>
+      </div>
+      <p class="scratch-hint">Rasca para descubrir 🖤</p>
+    </div>
+  </div>
+</div>
+</div>
+ 
+<!-- ===== MODAL 4 ===== -->
+<div class="modal-overlay" id="modal-4">
+<div class="modal-content">
+  <button class="modal-back" onclick="closeDay()">← Volver</button>
+  <span class="modal-day-badge">Día Cuatro</span>
+  <h2 class="modal-title">Ruleta de Deseos 🎲</h2>
+  <div class="modal-divider"></div>
+ 
+  <div class="love-letter">
+    <div class="love-letter-text">
+      <!-- ✏️ EDITA ESTA CARTA — DÍA 4 -->
+      Mi niña,<br><br>
+      Hoy dejamos que decida el destino. Y ya que el destino me puso a ti en el camino, no me puedo quejar de sus decisiones.<br><br>
+      Gira, lee, y luego cuéntame qué te salió. Quiero que esta noche hablemos hasta tarde, jugando, riendo, siendo nosotros.<br><br>
+      Y si te toca algo atrevido... bienvenido sea. 😏
+    </div>
+    <div class="love-letter-sign">— El que gira la ruleta contigo 🎲</div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🎡</span><div><div class="activity-title">Ruleta de Planes</div><div class="activity-subtitle">¿Qué hacemos esta semana?</div></div></div>
+    <button class="roulette-btn" onclick="spinRoulette('r4a', planesJuntos)">🎡 Girar</button>
+    <div class="result-display" id="r4a"></div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🔥</span><div><div class="activity-title">Ruleta de Retos</div><div class="activity-subtitle">Lo que salga, lo cumples 😏</div></div></div>
+    <button class="roulette-btn" onclick="spinRoulette('r4b', retos)">🔥 Girar</button>
+    <div class="result-display" id="r4b"></div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">💌</span><div><div class="activity-title">Lo que me gusta de ti</div><div class="activity-subtitle">Cada giro, una verdad</div></div></div>
+    <button class="roulette-btn" onclick="spinRoulette('r4c', meGusta)">💌 Girar</button>
+    <div class="result-display" id="r4c"></div>
+  </div>
+</div>
+</div>
+ 
+<!-- ===== MODAL 5 ===== -->
+<div class="modal-overlay" id="modal-5">
+<div class="modal-content">
+  <button class="modal-back" onclick="closeDay()">← Volver</button>
+  <span class="modal-day-badge">Día Cinco</span>
+  <h2 class="modal-title">Nuestra Galería 📸</h2>
+  <div class="modal-divider"></div>
+ 
+  <div class="love-letter">
+    <div class="love-letter-text">
+      <!-- ✏️ EDITA ESTA CARTA — DÍA 5 -->
+      Amor,<br><br>
+      Hay momentos que no existen en ninguna foto pero que llevo conmigo a todas partes. Esa primera conversación larga que no terminaba. El día que me dijiste algo que no esperaba. La vez que me hiciste reír cuando más lo necesitaba.<br><br>
+      Esta es nuestra galería. Sin filtros. Solo con lo que importa de verdad.
+    </div>
+    <div class="love-letter-sign">— Tu fotógrafo de momentos 📸</div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🖼️</span><div><div class="activity-title">Nuestros Momentos</div><div class="activity-subtitle">Toca cada polaroid</div></div></div>
+    <div class="polaroid-gallery">
+      <div class="polaroid" style="--rot:-3deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="polaroid-img">💬</div><div class="polaroid-caption">La primera conversación que no quería terminar</div></div>
+      <div class="polaroid" style="--rot:2.5deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="polaroid-img">😂</div><div class="polaroid-caption">Cuando me hiciste reír sin querer hacerlo</div></div>
+      <div class="polaroid" style="--rot:-2deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="polaroid-img">🌙</div><div class="polaroid-caption">Esa noche que ninguno quería colgar</div></div>
+      <div class="polaroid" style="--rot:3deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="polaroid-img">❤️‍🔥</div><div class="polaroid-caption">El momento en que supe que eras tú</div></div>
+    </div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🔮</span><div><div class="activity-title">Lo que me pones a imaginar</div><div class="activity-subtitle">Gira y lee</div></div></div>
+    <button class="roulette-btn" onclick="spinRoulette('r5', imaginaciones)">🔮 Girar</button>
+    <div class="result-display" id="r5"></div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">💫</span><div><div class="activity-title">Recuerdo Escondido</div><div class="activity-subtitle">Rasca con cuidado</div></div></div>
+    <div class="scratch-container">
+      <div class="scratch-canvas-wrap">
+        <div class="scratch-reveal">💫<br>El día que te conocí<br>el mundo empezó a tener más sentido.<br>Y eso no lo cambiaría nunca.</div>
+        <canvas class="scratch-canvas" id="scratch5" height="180"></canvas>
+      </div>
+      <p class="scratch-hint">Rasca para descubrir 🖤</p>
+    </div>
+  </div>
+</div>
+</div>
+ 
+<!-- ===== MODAL 6 ===== -->
+<div class="modal-overlay" id="modal-6">
+<div class="modal-content">
+  <button class="modal-back" onclick="closeDay()">← Volver</button>
+  <span class="modal-day-badge">Día Seis</span>
+  <h2 class="modal-title">Promesas de Verdad ✨</h2>
+  <div class="modal-divider"></div>
+ 
+  <div class="love-letter">
+    <div class="love-letter-text">
+      <!-- ✏️ EDITA ESTA CARTA — DÍA 6 -->
+      Mi amor,<br><br>
+      Mañana termina esta semana. Pero lo que siento por ti no termina con ella ni por asomo.<br><br>
+      Hoy quiero hacer promesas. No las que se dicen para quedar bien. Las que cuestan. Las que se sostienen con el tiempo.<br><br>
+      Te prometo que el día que te tenga cerca no voy a desperdiciar ni un segundo. Y te prometo que voy a seguir eligiéndote. Siempre.
+    </div>
+    <div class="love-letter-sign">— El que te promete todo ✨</div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🤞</span><div><div class="activity-title">Mis Promesas Para Ti</div><div class="activity-subtitle">Toca cada una para leerla</div></div></div>
+    <div style="display:grid;gap:12px;">
+      <div class="pick-card" style="aspect-ratio:auto;min-height:90px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:90px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">🤞 Promesa #1</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px;line-height:1.65">Te prometo que nunca vas a sentirte sola mientras estés conmigo, aunque estemos lejos.</div></div></div>
+      <div class="pick-card" style="aspect-ratio:auto;min-height:90px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:90px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">🤞 Promesa #2</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px;line-height:1.65">Te prometo que el día que nos veamos, el abrazo va a valer toda la espera y más.</div></div></div>
+      <div class="pick-card" style="aspect-ratio:auto;min-height:90px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:90px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">🤞 Promesa #3</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px;line-height:1.65">Te prometo que nunca voy a dejar de hacerte sentir deseada. Nunca.</div></div></div>
+      <div class="pick-card" style="aspect-ratio:auto;min-height:90px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:90px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">🤞 Promesa #4</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px;line-height:1.65">Te prometo que voy a seguir eligiéndote cada día. Esa es la promesa que más vale.</div></div></div>
+    </div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">🌍</span><div><div class="activity-title">Lo que haremos juntos</div><div class="activity-subtitle">Nuestros planes. Gira y descubre.</div></div></div>
+    <button class="roulette-btn" onclick="spinRoulette('r6', planesFuturos)">🌍 Girar</button>
+    <div class="result-display" id="r6"></div>
+  </div>
+ 
+  <div class="activity">
+    <div class="activity-header"><span class="activity-icon">💋</span><div><div class="activity-title">Besitos de Buenas Noches</div><div class="activity-subtitle">Para que lleguen aunque sea de lejos</div></div></div>
+    <div class="kiss-counter">
+      <span class="kiss-count-display" id="kiss-count-6">0</span>
+      <button class="kiss-btn" onclick="addKiss6()">💋</button>
+      <p class="kiss-msg" id="kiss-msg-6"></p>
+    </div>
+  </div>
+</div>
+</div>
+ 
+<!-- ===== MODAL 7 ===== -->
+<div class="modal-overlay" id="modal-7">
+<div class="modal-content">
+  <button class="modal-back" onclick="closeDay()">← Volver</button>
+  <span class="modal-day-badge">Día Siete · El Gran Final</span>
+  <h2 class="modal-title">El Cofre de los Secretos 🔐</h2>
+  <div class="modal-divider"></div>
+ 
+  <p style="font-style:italic;color:rgba(245,230,208,.7);margin-bottom:28px;line-height:1.85;font-size:1rem;">
+    Al final de esta semana hay algo especial esperándote. Resuelve las 4 pistas, reúne los fragmentos de la contraseña y abre el cofre.
+  </p>
+ 
+  <div class="puzzle-clues">
+    <div class="clue-card">
+      <div class="clue-number">✦ Pista 1 de 4 ✦</div>
+      <p class="clue-text">«¿Cuántos besos me mandaste en el Día 1? Escribe ese número exacto.»</p>
+      <p style="font-size:.85rem;color:rgba(245,230,208,.42);margin-bottom:14px;font-style:italic">💡 Vuelve al Día 1 si no recuerdas</p>
+      <div class="clue-answer-area">
+        <input class="clue-input" id="ci1" type="text" placeholder="El número..." maxlength="6">
+        <button class="clue-btn" onclick="checkClue(1)">Verificar</button>
+      </div>
+      <div class="piece-revealed" id="piece1"><div class="piece-fragment">am</div><div class="piece-label">Fragmento 1 encontrado ✦</div></div>
+    </div>
+ 
+    <div class="clue-card">
+      <div class="clue-number">✦ Pista 2 de 4 ✦</div>
+      <p class="clue-text">«¿Cuántas confesiones tiene el Día 3? Escribe el número con letras.»</p>
+      <p style="font-size:.85rem;color:rgba(245,230,208,.42);margin-bottom:14px;font-style:italic">💡 Ejemplo: cinco</p>
+      <div class="clue-answer-area">
+        <input class="clue-input" id="ci2" type="text" placeholder="En letras..." maxlength="10">
+        <button class="clue-btn" onclick="checkClue(2)">Verificar</button>
+      </div>
+      <div class="piece-revealed" id="piece2"><div class="piece-fragment">or</div><div class="piece-label">Fragmento 2 encontrado ✦</div></div>
+    </div>
+ 
+    <div class="clue-card">
+      <div class="clue-number">✦ Pista 3 de 4 ✦</div>
+      <p class="clue-text">«¿Qué emoji tiene el botón de besos? Escríbelo.»</p>
+      <p style="font-size:.85rem;color:rgba(245,230,208,.42);margin-bottom:14px;font-style:italic">💡 Es el mismo en todos los días</p>
+      <div class="clue-answer-area">
+        <input class="clue-input" id="ci3" type="text" placeholder="El emoji..." maxlength="5">
+        <button class="clue-btn" onclick="checkClue(3)">Verificar</button>
+      </div>
+      <div class="piece-revealed" id="piece3"><div class="piece-fragment">ci</div><div class="piece-label">Fragmento 3 encontrado ✦</div></div>
+    </div>
+ 
+    <div class="clue-card">
+      <div class="clue-number">✦ Pista 4 de 4 ✦</div>
+      <p class="clue-text">«¿Cuántas promesas tiene el Día 6? Escríbelo con letras.»</p>
+      <p style="font-size:.85rem;color:rgba(245,230,208,.42);margin-bottom:14px;font-style:italic">💡 Ejemplo: cuatro</p>
+      <div class="clue-answer-area">
+        <input class="clue-input" id="ci4" type="text" placeholder="El número..." maxlength="10">
+        <button class="clue-btn" onclick="checkClue(4)">Verificar</button>
+      </div>
+      <div class="piece-revealed" id="piece4"><div class="piece-fragment">to</div><div class="piece-label">Fragmento 4 encontrado ✦</div></div>
+    </div>
+  </div>
+ 
+  <div class="password-section">
+    <div class="password-title">🔐 La Contraseña Final</div>
+    <p class="password-hint">Junta los 4 fragmentos en orden, sin espacios, todo en minúsculas.</p>
+    <p style="font-size:.85rem;color:var(--dorado);margin-bottom:20px;font-style:italic">Piezas: <span id="collected-pieces">[ _ ] [ _ ] [ _ ] [ _ ]</span></p>
+    <input class="password-input" id="final-pw" type="text" placeholder="tu contraseña...">
+    <br>
+    <button class="password-submit" onclick="checkPassword()">Abrir el Cofre ✦</button>
+    <p class="password-error" id="pw-error">❌ Esa no es la contraseña. Revisa tus fragmentos.</p>
+  </div>
+</div>
+</div>
+ 
+<!-- ===== CARTA FINAL ===== -->
+<div class="final-letter-overlay" id="final-letter">
+<div class="final-letter-content">
+  <span class="final-letter-rose">🌹</span>
+  <h2 class="final-letter-title">Lo abriste.</h2>
+  <p class="final-letter-subtitle">✦ Esta carta siempre fue tuya ✦</p>
+  <div class="final-letter-paper">
+    <div class="final-letter-body">
+      <!-- ✏️ EDITA LA CARTA FINAL — LA MÁS IMPORTANTE -->
+      <p>Mi amor,</p>
+      <p>Si estás leyendo esto es porque pasaste por los 7 días. Por los retos, los juegos, las confesiones, las promesas. Y eso me dice algo de ti que ya sabía: que eres increíble.</p>
+      <p>Esta semana la construí pensando en ti. En cada cosa que te gusta, en lo que te hace reír, en lo que te pone seria, en lo que te hace suspirar. La armé poco a poco, con todo lo que tengo.</p>
+      <p>Quiero que sepas que no eres solo mi novia. Eres la persona con la que quiero construir algo real. Algo que no se rompa fácil.</p>
+      <p>La distancia duele. A veces mucho. Pero hay algo que nunca me ha fallado: que cuando hablo contigo, el mundo se vuelve más fácil.</p>
+      <p>Te amo con todo lo que soy. Y lo que soy cada día se parece más a la persona que quiere merecer estar a tu lado.</p>
+      <p>Esta semana fue mía dándote. Pero todo lo que viene es nuestro. 🖤</p>
+    </div>
+    <div class="final-sign">— Con todo mi amor 🌹</div>
+  </div>
+  <button class="close-final" onclick="closeFinalLetter()">Cerrar ✦</button>
+</div>
+</div>
+ 
+<script>
+// PARTÍCULAS
+const cv=document.getElementById('canvas-bg'),ctx=cv.getContext('2d');let ps=[];
+function resz(){cv.width=window.innerWidth;cv.height=window.innerHeight;}
+class P{constructor(){this.r();}r(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.s=Math.random()*2+.5;this.vy=-(Math.random()*.5+.2);this.vx=(Math.random()-.5)*.3;this.o=Math.random()*.6+.1;this.c=Math.random()>.7?'#c9a84c':'#c0001a';}u(){this.y+=this.vy;this.x+=this.vx;if(this.y<-10||this.x<-10||this.x>cv.width+10)this.r();}d(){ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fillStyle=this.c;ctx.globalAlpha=this.o;ctx.fill();ctx.globalAlpha=1;}}
+function initP(){ps=[];for(let i=0;i<80;i++)ps.push(new P());}
+function animP(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{p.u();p.d();});requestAnimationFrame(animP);}
+resz();initP();animP();window.addEventListener('resize',()=>{resz();initP();});
+ 
+// MODAL
+let cur=0;
+function openDay(n){cur=n;document.getElementById('modal-'+n).classList.add('active');document.body.style.overflow='hidden';if(n===1)iS('scratch1');if(n===2)iS('scratch2');if(n===3)iS('scratch3');if(n===5)iS('scratch5');}
+function closeDay(){if(cur){document.getElementById('modal-'+cur).classList.remove('active');document.body.style.overflow='';cur=0;}}
+ 
+// SCRATCH
+function iS(id){
+  const c=document.getElementById(id);if(!c||c.dataset.init)return;c.dataset.init='1';
+  const w=c.parentElement,W=w.offsetWidth,H=180;c.width=W;c.height=H;
+  const x=c.getContext('2d'),g=x.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#7a0010');g.addColorStop(.5,'#1a0a10');g.addColorStop(1,'#0a0005');
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.fillStyle='rgba(245,230,208,.5)';x.font='14px Cormorant Garamond';x.textAlign='center';x.fillText('✦ Rasca aquí ✦',W/2,H/2);
+  let down=false;
+  function sc(e){
+    if(!down)return;
+    const r=c.getBoundingClientRect(),sx=c.width/r.width,sy=c.height/r.height;
+    const px=((e.clientX||(e.touches&&e.touches[0].clientX)||0)-r.left)*sx;
+    const py=((e.clientY||(e.touches&&e.touches[0].clientY)||0)-r.top)*sy;
+    x.globalCompositeOperation='destination-out';x.beginPath();x.arc(px,py,30,0,Math.PI*2);x.fill();x.globalCompositeOperation='source-over';
+    const d=x.getImageData(0,0,c.width,c.height).data;let t=0;for(let i=3;i<d.length;i+=4)if(d[i]<128)t++;
+    if(t/(c.width*c.height)>.5)c.style.display='none';
+  }
+  c.addEventListener('mousedown',e=>{down=true;sc(e);});c.addEventListener('mousemove',sc);c.addEventListener('mouseup',()=>down=false);
+  c.addEventListener('touchstart',e=>{down=true;sc(e);e.preventDefault();},{passive:false});
+  c.addEventListener('touchmove',e=>{sc(e);e.preventDefault();},{passive:false});
+  c.addEventListener('touchend',()=>down=false);
+}
+ 
+// RULETA DATA
+const mensajes=[
+  '💋 Escríbeme algo esta noche que solo yo pueda leer.',
+  '🔥 Cuéntame qué es lo que más quieres que te haga cuando nos veamos.',
+  '😏 Mándame una foto tuya de la forma más bonita que puedas ahora mismo.',
+  '🌙 Dime tu pensamiento más prohibido sobre nosotros dos.',
+  '💌 Escríbeme el mensaje más atrevido que hayas querido enviarme pero no te atreviste.',
+  '✨ Dime una cosa que extrañas de no poder tocarme.',
+  '🖤 Cuéntame qué parte de mí es la que más piensas.',
+  '🎴 Dime algo que nunca me has dicho por pena pero que ya es hora de decir.',
+];
+const planesJuntos=[
+  '🍿 Película en videollamada esta semana, con palomitas y todo.',
+  '🌅 Videollamada mirando el mismo cielo, sin hablar de nada en concreto.',
+  '🎵 Hacemos una playlist juntos: una canción cada uno, sin límites.',
+  '☕ Un desayuno en videollamada, como si estuviéramos en la misma mesa.',
+  '💌 Nos escribimos una carta de verdad y nos la mandamos por correo.',
+  '🌃 Videollamada nocturna solo para hablar sin reloj.',
+  '🍳 Cocinamos lo mismo cada quien en su cocina y cenamos juntos en pantalla.',
+  '📖 Los dos leemos lo mismo y luego lo comentamos.',
+];
+const retos=[
+  '🔥 Esta noche me mandas algo que normalmente no enviarías.',
+  '💋 Mándame una foto de como estás ahora mismo. Sin excusas.',
+  '😏 Me describes cómo te imaginas el día que por fin nos veamos. Con detalle.',
+  '🌙 Dime una cosa que piensas de mí que nunca me has dicho.',
+  '💌 Escríbeme tu parte favorita de nuestras noches hablando.',
+  '✨ Me cuentas qué ropa llevas puesta. Ahora mismo.',
+  '🖤 Me confiesas la última vez que pensaste en mí de más.',
+  '🎴 Elegimos juntos un plan atrevido para esta semana.',
+];
+const meGusta=[
+  '💛 Me gusta cómo me escribes cuando estás contenta. Se nota todo.',
+  '🌙 Me gusta que eres real conmigo. Sin filtros.',
+  '🔥 Me gustas cuando te pones seria porque sé que te importa de verdad.',
+  '😂 Me encanta cómo te ríes, aunque no pueda verte hacerlo.',
+  '💭 Me gusta tu forma de pensar. Que cada cosa que dices tiene peso.',
+  '🌹 Me gusta que eres completamente tú. Sin disculparte por eso.',
+  '✨ Me gusta lo que me hace sentir cuando estás conmigo, aunque sea en pantalla.',
+  '💪 Me gusta que eres fuerte, pero que me dejas verte cuando no lo eres tanto.',
+];
+const imaginaciones=[
+  '🌅 Imagino que algún día despertamos en el mismo lugar y no tenemos prisa.',
+  '💋 Imagino la primera vez que te vea en persona y todo lo que voy a querer.',
+  '🌙 Imagino cómo sería tenerte cerca por la noche, sin pantalla de por medio.',
+  '✈️ Imagino el momento en que te vea llegar y se me quite el peso de encima.',
+  '☕ Imagino desayunos juntos sin reloj ni distancia.',
+  '🔥 Imagino todo lo que va a pasar el día que por fin no haya kilómetros.',
+  '🎬 Imagino verte reírte de verdad, en persona, justo al lado mío.',
+  '🌹 Imagino decirte todo esto en voz alta, mirándote a los ojos.',
+];
+const planesFuturos=[
+  '🌮 El día que nos veamos, comemos lo que tú elijas. Sin negociación.',
+  '🌅 Vamos a ver un atardecer juntos. Solo nosotros dos.',
+  '🛫 Algún día viajamos a un lugar que ninguno haya conocido antes.',
+  '🌃 Una noche de ciudad. Luces, caminar, perdernos juntos.',
+  '📸 Tomamos mil fotos juntos para tener las que ahora no podemos.',
+  '🏠 Algún día, un espacio que sea nuestro. No sé cuándo. Pero lo sé.',
+  '☕ Un desayuno largo sin prisa, hablando de todo.',
+  '🌊 Un lugar con agua. Mar, río, lo que sea. Contigo.',
+];
+ 
+function spinRoulette(id,opts){
+  const el=document.getElementById(id);el.classList.remove('show');el.style.opacity='0';
+  let c=0;const iv=setInterval(()=>{el.textContent=opts[Math.floor(Math.random()*opts.length)];el.classList.add('show');el.style.opacity='.3';c++;if(c>10){clearInterval(iv);el.style.opacity='1';}},80);
+}
+ 
+function flipCard(card){card.classList.toggle('flipped');}
+ 
+function checkQ(btn,correct,msg){
+  btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(o=>{o.disabled=true;o.classList.add('wrong');});
+  btn.classList.remove('wrong');
+  const fb=btn.closest('.quiz-container').querySelector('.quiz-feedback');
+  if(correct){btn.classList.add('correct');fb.textContent=msg;fb.style.display='block';}
+}
+ 
+// BESOS
+let kc=0;
+const kms=['','Ya con ese me alegró el día 💛','¡Otro más! Te los recibo todos 💋','Tres... me estás malacostumbrando 😏','Sigo contando... 🌙','Cinco. Los guardo todos.','Ya perdí la cuenta pero no me quejo 🔥','Sigues mandando. Yo sigo recibiendo 🖤','Eres demasiado. Y me encanta.','No pares 💌','10 besos. Eso se llama amor 🌹'];
+function addKiss(){kc++;document.getElementById('kiss-count').textContent=kc;document.getElementById('kiss-msg').textContent=kms[Math.min(kc,kms.length-1)];localStorage.setItem('kc',kc);}
+let kc6=0;
+function addKiss6(){kc6++;document.getElementById('kiss-count-6').textContent=kc6;const m=['','Para ti siempre 💋','Y más... 🔥','Sin límite. Como mis ganas de ti 🖤','Ya ni cuento, solo los mando ✨'];document.getElementById('kiss-msg-6').textContent=m[Math.min(kc6,4)];}
+ 
+// PUZZLE — contraseña: amorcito (am+or+ci+to)
+const PASS='amorcito';
+const pcs={1:'am',2:'or',3:'ci',4:'to'};
+let got={1:false,2:false,3:false,4:false};
+function checkClue(n){const v=document.getElementById('ci'+n).value.trim();if(!v.length)return;got[n]=true;document.getElementById('piece'+n).classList.add('show');updP();}
+function updP(){let s='';for(let i=1;i<=4;i++)s+=got[i]?`[ ${pcs[i]} ] `:'[ _ ] ';document.getElementById('collected-pieces').textContent=s.trim();}
+function checkPassword(){
+  const pw=document.getElementById('final-pw').value.trim().toLowerCase();
+  const err=document.getElementById('pw-error');
+  if(pw===PASS){err.style.display='none';openFinal();}
+  else{err.style.display='block';document.getElementById('final-pw').style.borderColor='rgba(192,0,26,.9)';setTimeout(()=>{document.getElementById('final-pw').style.borderColor='';},1000);}
+}
+ 
+// CARTA FINAL
+function openFinal(){closeDay();setTimeout(()=>{document.getElementById('final-letter').classList.add('open');document.body.style.overflow='hidden';rain();},300);}
+function closeFinalLetter(){document.getElementById('final-letter').classList.remove('open');document.body.style.overflow='';}
+function rain(){const ov=document.getElementById('final-letter');for(let i=0;i<22;i++){setTimeout(()=>{const h=document.createElement('div');h.textContent=Math.random()>.5?'❤️':'🌹';h.style.cssText=`position:fixed;top:-50px;left:${Math.random()*100}%;font-size:${Math.random()*1.5+1}rem;animation:fH ${Math.random()*3+3}s linear forwards;pointer-events:none;z-index:9999;`;ov.appendChild(h);setTimeout(()=>h.remove(),6000);},i*180);}}
+const st=document.createElement('style');st.textContent='@keyframes fH{to{transform:translateY(110vh) rotate(360deg);opacity:0}}';document.head.appendChild(st);
+</script>
+</body>
+</html>
