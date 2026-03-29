@@ -1,3 +1,6 @@
+7diascontigo · HTML
+Copiar
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -123,11 +126,13 @@ canvas.scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;curs
 .pick-card-front{background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4);font-size:2rem;}
 .pick-card-back{background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:var(--crema);line-height:1.45;}
  
-/* POLAROID */
+/* POLAROID — CORREGIDO */
 .polaroid-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;padding:8px 0;}
 .polaroid{background:#fff;padding:14px 14px 38px;box-shadow:0 8px 30px rgba(0,0,0,.55);transform:rotate(var(--rot,-2deg));transition:transform .3s;cursor:pointer;}
 .polaroid:hover{transform:rotate(0deg) scale(1.04);}
-.polaroid-img{width:100%;aspect-ratio:1;background:linear-gradient(135deg,var(--rojo-oscuro),var(--negro));display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:10px;}
+.polaroid-img{width:100%;aspect-ratio:1;overflow:hidden;margin-bottom:10px;background:linear-gradient(135deg,var(--rojo-oscuro),var(--negro));display:flex;align-items:center;justify-content:center;font-size:3rem;}
+/* Si la imagen carga, la muestra; si no, se ve el emoji de respaldo */
+.polaroid-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .polaroid-caption{font-family:'IM Fell English',serif;font-style:italic;text-align:center;color:#333;font-size:.88rem;line-height:1.3;}
  
 /* PUZZLE */
@@ -236,25 +241,17 @@ canvas.scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;curs
   <span class="modal-day-badge">Día Uno</span>
   <h2 class="modal-title">El Primer Latido 💌</h2>
   <div class="modal-divider"></div>
- 
   <div class="love-letter">
     <div class="love-letter-text">
-      <!-- ✏️ EDITA ESTA CARTA — DÍA 1 -->
-     Mi amor,<br><br>
-
-No sé en qué momento dejaste de ser solo alguien con quien hablaba… y te volviste alguien que necesito en mis días. Solo sé que desde que llegaste, algo dentro de mí cambió sin pedir permiso.<br><br>
-
-Me gustas de una forma que no sé explicar del todo, pero la siento en todo. Me gustas cuando te emocionas y escribes sin parar, como si no quisieras perder ni un segundo conmigo. Me gustas cuando haces pausas antes de decir algo importante, como si cuidaras cada palabra… y aún así logras que me llegue directo al corazón.<br><br>
-
-Pero también me gustas de una forma más profunda… más intensa. Hay noches en las que no puedo dormir, imaginando cómo sería tenerte cerca de verdad. Sentir tu respiración, poder abrazarte sin prisas, acercarme poco a poco… y perderme en ese momento contigo.<br><br>
-
-A veces me sorprendo pensando en lo mucho que me gustaría tenerte aquí, no solo para hablar, sino para sentirte… para que todo esto que tenemos deje de ser solo palabras y se convierta en algo real, algo que no tenga distancia.<br><br>
-
-Porque contigo no solo quiero momentos bonitos… te quiero a ti, completa, cerca, y conmigo.<br><br>
+      Mi amor,<br><br>
+      No sé en qué momento dejaste de ser solo alguien con quien hablaba… y te volviste alguien que necesito en mis días. Solo sé que desde que llegaste, algo dentro de mí cambió sin pedir permiso.<br><br>
+      Me gustas de una forma que no sé explicar del todo, pero la siento en todo. Me gustas cuando te emocionas y escribes sin parar, como si no quisieras perder ni un segundo conmigo. Me gustas cuando haces pausas antes de decir algo importante, como si cuidaras cada palabra… y aún así logras que me llegue directo al corazón.<br><br>
+      Pero también me gustas de una forma más profunda… más intensa. Hay noches en las que no puedo dormir, imaginando cómo sería tenerte cerca de verdad. Sentir tu respiración, poder abrazarte sin prisas, acercarme poco a poco… y perderme en ese momento contigo.<br><br>
+      A veces me sorprendo pensando en lo mucho que me gustaría tenerte aquí, no solo para hablar, sino para sentirte… para que todo esto que tenemos deje de ser solo palabras y se convierta en algo real, algo que no tenga distancia.<br><br>
+      Porque contigo no solo quiero momentos bonitos… te quiero a ti, completa, cerca, y conmigo.<br><br>
     </div>
     <div class="love-letter-sign">— El que siempre va a quererte 🌹</div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">❓</span><div><div class="activity-title">¿Me conoces bien?</div><div class="activity-subtitle">Un quiz sobre nosotros</div></div></div>
     <div class="quiz-container">
@@ -268,7 +265,6 @@ Porque contigo no solo quiero momentos bonitos… te quiero a ti, completa, cerc
       <div class="quiz-feedback"></div>
     </div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🎴</span><div><div class="activity-title">Rasca el Sobre</div><div class="activity-subtitle">Hay algo escondido para ti</div></div></div>
     <div class="scratch-container">
@@ -279,7 +275,6 @@ Porque contigo no solo quiero momentos bonitos… te quiero a ti, completa, cerc
       <p class="scratch-hint">Desliza el dedo para revelar 🖤</p>
     </div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">💋</span><div><div class="activity-title">Mándame Besos</div><div class="activity-subtitle">Presiona cuántos quieras darme hoy</div></div></div>
     <div class="kiss-counter">
@@ -298,25 +293,17 @@ Porque contigo no solo quiero momentos bonitos… te quiero a ti, completa, cerc
   <span class="modal-day-badge">Día Dos</span>
   <h2 class="modal-title">La Llama 🔥</h2>
   <div class="modal-divider"></div>
- 
   <div class="love-letter">
     <div class="love-letter-text">
-      <!-- ✏️ EDITA ESTA CARTA — DÍA 2 -->
       Mi amor,<br><br>
-
-Hay algo en ti que me provoca de una forma que no sé explicar… y sinceramente, tampoco quiero hacerlo. Porque me gusta sentirlo así, sin filtros.<br><br>
-
-No es solo que seas guapísima… es la forma en la que me hablas, en la que te imagino, en la que poco a poco te metes en mi cabeza… y te quedas ahí. Hay momentos en los que no puedo evitar pensar en ti más de la cuenta… y en todo lo que me gustaría hacer cuando por fin estemos frente a frente.<br><br>
-
-Y sí, lo pienso de verdad… en abrazarte fuerte, en acercarme sin prisa, en sentir cómo reaccionas cuando estés tan cerca de mí. En besarte lento al principio… y después dejar que ese momento se vuelva algo que ninguno de los dos quiera detener.<br><br>
-
-Me dan ganas de descubrir cada parte de ti, sin prisas… de quedarme contigo el tiempo que haga falta, perdiéndonos en ese momento donde ya no importa nada más que nosotros dos.<br><br>
-
-Hoy el día es tuyo… pero no voy a mentir, también es un poco de todo lo que me haces imaginar. 🔥<br><br>
+      Hay algo en ti que me provoca de una forma que no sé explicar… y sinceramente, tampoco quiero hacerlo. Porque me gusta sentirlo así, sin filtros.<br><br>
+      No es solo que seas guapísima… es la forma en la que me hablas, en la que te imagino, en la que poco a poco te metes en mi cabeza… y te quedas ahí. Hay momentos en los que no puedo evitar pensar en ti más de la cuenta… y en todo lo que me gustaría hacer cuando por fin estemos frente a frente.<br><br>
+      Y sí, lo pienso de verdad… en abrazarte fuerte, en acercarme sin prisa, en sentir cómo reaccionas cuando estés tan cerca de mí. En besarte lento al principio… y después dejar que ese momento se vuelva algo que ninguno de los dos quiera detener.<br><br>
+      Me dan ganas de descubrir cada parte de ti, sin prisas… de quedarme contigo el tiempo que haga falta, perdiéndonos en ese momento donde ya no importa nada más que nosotros dos.<br><br>
+      Hoy el día es tuyo… pero no voy a mentir, también es un poco de todo lo que me haces imaginar. 🔥<br><br>
     </div>
     <div class="love-letter-sign">— El que ya te piensa demasiado 🔥</div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🃏</span><div><div class="activity-title">Elige una Carta</div><div class="activity-subtitle">Cada una tiene algo para ti</div></div></div>
     <div class="cards-game">
@@ -328,13 +315,11 @@ Hoy el día es tuyo… pero no voy a mentir, también es un poco de todo lo que 
       <div class="pick-card" onclick="flipCard(this)"><div class="pick-card-inner"><div class="pick-card-front">💌</div><div class="pick-card-back">Dime el pensamiento más atrevido que has tenido sobre nosotros.</div></div></div>
     </div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🎲</span><div><div class="activity-title">Ruleta de Mensajes</div><div class="activity-subtitle">Gira y envíame lo que salga 😏</div></div></div>
     <button class="roulette-btn" onclick="spinRoulette('r2', mensajes)">🎲 Girar</button>
     <div class="result-display" id="r2"></div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🔐</span><div><div class="activity-title">Secreto del Día 2</div><div class="activity-subtitle">Solo para tus ojos</div></div></div>
     <div class="scratch-container">
@@ -355,25 +340,17 @@ Hoy el día es tuyo… pero no voy a mentir, también es un poco de todo lo que 
   <span class="modal-day-badge">Día Tres</span>
   <h2 class="modal-title">Noche de Confesiones 🌙</h2>
   <div class="modal-divider"></div>
- 
   <div class="love-letter">
     <div class="love-letter-text">
-      <!-- ✏️ EDITA ESTA CARTA — DÍA 3 -->
-    Amor,<br><br>
-
-Hay cosas que no digo… porque me da miedo que suenen demasiado intensas. Pero hoy no quiero guardarme nada. Hoy quiero que sepas todo lo que me haces sentir.<br><br>
-
-Te pienso cuando escucho una canción que me gusta y lo primero que quiero es mandártela. Te pienso cuando me pasa algo, porque eres la primera persona con la que quiero compartirlo. Como si todo tuviera más sentido cuando pasa por ti.<br><br>
-
-Pero también te pienso de otra forma… una que no siempre se dice en voz alta, pero que está ahí, creciendo cada vez más. Esa forma en la que imagino tenerte cerca, demasiado cerca… sin espacio entre nosotros.<br><br>
-
-A veces me dan ganas de acercarme, mirarte a los ojos… y dejar que todo pase sin decir nada. Solo sentirte, poco a poco, hasta que ese momento se vuelva imposible de ignorar.<br><br>
-
-Y lo que más me gusta… es que cada vez tengo más ganas de que eso deje de ser solo una idea.<br><br>
+      Amor,<br><br>
+      Hay cosas que no digo… porque me da miedo que suenen demasiado intensas. Pero hoy no quiero guardarme nada. Hoy quiero que sepas todo lo que me haces sentir.<br><br>
+      Te pienso cuando escucho una canción que me gusta y lo primero que quiero es mandártela. Te pienso cuando me pasa algo, porque eres la primera persona con la que quiero compartirlo. Como si todo tuviera más sentido cuando pasa por ti.<br><br>
+      Pero también te pienso de otra forma… una que no siempre se dice en voz alta, pero que está ahí, creciendo cada vez más. Esa forma en la que imagino tenerte cerca, demasiado cerca… sin espacio entre nosotros.<br><br>
+      A veces me dan ganas de acercarme, mirarte a los ojos… y dejar que todo pase sin decir nada. Solo sentirte, poco a poco, hasta que ese momento se vuelva imposible de ignorar.<br><br>
+      Y lo que más me gusta… es que cada vez tengo más ganas de que eso deje de ser solo una idea.<br><br>
     </div>
     <div class="love-letter-sign">— El que no puede dejar de pensarte 🌙</div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🕯️</span><div><div class="activity-title">Mis Confesiones</div><div class="activity-subtitle">Toca cada una para revelarla</div></div></div>
     <div style="display:grid;gap:12px;">
@@ -384,7 +361,6 @@ Y lo que más me gusta… es que cada vez tengo más ganas de que eso deje de se
       <div class="pick-card" style="aspect-ratio:auto;min-height:80px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:80px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">💬 Confesión #5</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px">Extraño cosas que todavía no he tenido contigo. Y eso dice todo.</div></div></div>
     </div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🌙</span><div><div class="activity-title">Secreto de Medianoche</div><div class="activity-subtitle">Solo para tus ojos</div></div></div>
     <div class="scratch-container">
@@ -405,35 +381,26 @@ Y lo que más me gusta… es que cada vez tengo más ganas de que eso deje de se
   <span class="modal-day-badge">Día Cuatro</span>
   <h2 class="modal-title">Ruleta de Deseos 🎲</h2>
   <div class="modal-divider"></div>
- 
   <div class="love-letter">
     <div class="love-letter-text">
-      <!-- ✏️ EDITA ESTA CARTA — DÍA 4 -->
-     Mi niña,<br><br>
-
-Hoy vamos a dejar que el destino decida por nosotros… y la verdad, viendo a quién puso en mi camino, no puedo quejarme de sus decisiones.<br><br>
-
-Gira, lee… y luego cuéntame qué te tocó. Quiero que esta noche se nos vaya entre risas, miradas que dicen más de la cuenta… y ese juego nuestro que cada vez se pone más interesante.<br><br>
-
-Tengo curiosidad por lo que salga… pero más por cómo lo vas a decir, por esa forma tuya que me deja pensando de más.<br><br>
-
-Y si el destino se pone atrevido… no voy a ser yo quien lo detenga. 😏<br><br>
+      Mi niña,<br><br>
+      Hoy vamos a dejar que el destino decida por nosotros… y la verdad, viendo a quién puso en mi camino, no puedo quejarme de sus decisiones.<br><br>
+      Gira, lee… y luego cuéntame qué te tocó. Quiero que esta noche se nos vaya entre risas, miradas que dicen más de la cuenta… y ese juego nuestro que cada vez se pone más interesante.<br><br>
+      Tengo curiosidad por lo que salga… pero más por cómo lo vas a decir, por esa forma tuya que me deja pensando de más.<br><br>
+      Y si el destino se pone atrevido… no voy a ser yo quien lo detenga. 😏<br><br>
     </div>
     <div class="love-letter-sign">— El que gira la ruleta contigo 🎲</div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🎡</span><div><div class="activity-title">Ruleta de Planes</div><div class="activity-subtitle">¿Qué hacemos esta semana?</div></div></div>
     <button class="roulette-btn" onclick="spinRoulette('r4a', planesJuntos)">🎡 Girar</button>
     <div class="result-display" id="r4a"></div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🔥</span><div><div class="activity-title">Ruleta de Retos</div><div class="activity-subtitle">Lo que salga, lo cumples 😏</div></div></div>
     <button class="roulette-btn" onclick="spinRoulette('r4b', retos)">🔥 Girar</button>
     <div class="result-display" id="r4b"></div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">💌</span><div><div class="activity-title">Lo que me gusta de ti</div><div class="activity-subtitle">Cada giro, una verdad</div></div></div>
     <button class="roulette-btn" onclick="spinRoulette('r4c', meGusta)">💌 Girar</button>
@@ -449,30 +416,64 @@ Y si el destino se pone atrevido… no voy a ser yo quien lo detenga. 😏<br><b
   <span class="modal-day-badge">Día Cinco</span>
   <h2 class="modal-title">Nuestra Galería 📸</h2>
   <div class="modal-divider"></div>
- 
   <div class="love-letter">
     <div class="love-letter-text">
-      <!-- ✏️ EDITA ESTA CARTA — DÍA 5 -->
-   Amor,<br><br>
-
-Hay momentos que no existen en ninguna foto… pero que llevo conmigo a todas partes. Esa primera conversación que no queríamos terminar. Ese momento en el que dijiste algo que se me quedó grabado. Las veces que lograste hacerme reír justo cuando más lo necesitaba.<br><br>
-
-Pero también hay otros momentos… los que todavía no han pasado, pero no dejo de imaginar. Esos que no se guardan en una galería, sino en la mente… donde todo se siente más intenso, más cercano, más nuestro.<br><br>
-
-Esta es nuestra galería. Sin filtros. Sin miedo. Solo con lo que de verdad importa… y con todo lo que poco a poco vamos descubriendo el uno del otro.<br><br>
-
-Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crearlos juntos.<br><br>
+      Amor,<br><br>
+      Hay momentos que no existen en ninguna foto… pero que llevo conmigo a todas partes. Esa primera conversación que no queríamos terminar. Ese momento en el que dijiste algo que se me quedó grabado. Las veces que lograste hacerme reír justo cuando más lo necesitaba.<br><br>
+      Pero también hay otros momentos… los que todavía no han pasado, pero no dejo de imaginar. Esos que no se guardan en una galería, sino en la mente… donde todo se siente más intenso, más cercano, más nuestro.<br><br>
+      Esta es nuestra galería. Sin filtros. Sin miedo. Solo con lo que de verdad importa… y con todo lo que poco a poco vamos descubriendo el uno del otro.<br><br>
+      Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crearlos juntos.<br><br>
     </div>
     <div class="love-letter-sign">— Tu fotógrafo de momentos 📸</div>
   </div>
  
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🖼️</span><div><div class="activity-title">Nuestros Momentos</div><div class="activity-subtitle">Toca cada polaroid</div></div></div>
+ 
+    <!--
+      ════════════════════════════════════════════════════════
+      📌 INSTRUCCIONES PARA AGREGAR TUS FOTOS:
+ 
+      Pon tus fotos en la MISMA CARPETA que este archivo HTML.
+      Luego reemplaza los nombres de archivo abajo:
+ 
+        foto1.jpg  →  el nombre real de tu primera foto
+        foto2.jpg  →  el nombre real de tu segunda foto
+        etc.
+ 
+      Si las fotos no cargan, verás el emoji de respaldo (💖, 💕…)
+      ════════════════════════════════════════════════════════
+    -->
     <div class="polaroid-gallery">
-      <div class="polaroid" style="--rot:-3deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="ChatGPT Image 29 mar 2026, 04_28_51 a.m..png">💖❤️</div><div class="polaroid-caption">La primera conversación que no quería terminar</div></div>
-      <div class="polaroid" style="--rot:2.5deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="imagen_2026-03-29_042926548.png">💕</div><div class="polaroid-caption">Cuando me hiciste reír sin querer hacerlo</div></div>
-      <div class="polaroid" style="--rot:-2deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="imagen_2026-03-29_042947599.png">❤️</div><div class="polaroid-caption">Esa noche que ninguno quería colgar</div></div>
-      <div class="polaroid" style="--rot:3deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'"><div class="imagen_2026-03-29_042957644.png">❤️‍🔥</div><div class="polaroid-caption">El momento en que supe que eras tú</div></div>
+ 
+      <div class="polaroid" style="--rot:-3deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'">
+        <div class="polaroid-img">
+          <img src="ChatGPT Image 29 mar 2026, 04_28_51 a.m..png" alt="Momento 1" onerror="this.style.display='none';this.parentElement.innerHTML='💖';">
+        </div>
+        <div class="polaroid-caption">La primera conversación que no quería terminar</div>
+      </div>
+ 
+      <div class="polaroid" style="--rot:2.5deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'">
+        <div class="polaroid-img">
+          <img src="imagen_2026-03-29_042926548.png" alt="Momento 2" onerror="this.style.display='none';this.parentElement.innerHTML='💕';">
+        </div>
+        <div class="polaroid-caption">Cuando me hiciste reír sin querer hacerlo</div>
+      </div>
+ 
+      <div class="polaroid" style="--rot:-2deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'">
+        <div class="polaroid-img">
+          <img src="imagen_2026-03-29_042947599.png" alt="Momento 3" onerror="this.style.display='none';this.parentElement.innerHTML='❤️';">
+        </div>
+        <div class="polaroid-caption">Esa noche que ninguno quería colgar</div>
+      </div>
+ 
+      <div class="polaroid" style="--rot:3deg" onclick="this.style.transform='rotate(0deg) scale(1.05)'">
+        <div class="polaroid-img">
+          <img src="imagen_2026-03-29_042957644.png" alt="Momento 4" onerror="this.style.display='none';this.parentElement.innerHTML='❤️‍🔥';">
+        </div>
+        <div class="polaroid-caption">El momento en que supe que eras tú</div>
+      </div>
+ 
     </div>
   </div>
  
@@ -481,7 +482,6 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
     <button class="roulette-btn" onclick="spinRoulette('r5', imaginaciones)">🔮 Girar</button>
     <div class="result-display" id="r5"></div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">💫</span><div><div class="activity-title">Recuerdo Escondido</div><div class="activity-subtitle">Rasca con cuidado</div></div></div>
     <div class="scratch-container">
@@ -502,10 +502,8 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
   <span class="modal-day-badge">Día Seis</span>
   <h2 class="modal-title">Promesas de Verdad ✨</h2>
   <div class="modal-divider"></div>
- 
   <div class="love-letter">
     <div class="love-letter-text">
-      <!-- ✏️ EDITA ESTA CARTA — DÍA 6 -->
       Mi amor,<br><br>
       Mañana termina esta semana. Pero lo que siento por ti no termina con ella ni por asomo.<br><br>
       Hoy quiero hacer promesas. No las que se dicen para quedar bien. Las que cuestan. Las que se sostienen con el tiempo.<br><br>
@@ -513,7 +511,6 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
     </div>
     <div class="love-letter-sign">— El que te promete todo ✨</div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🤞</span><div><div class="activity-title">Mis Promesas Para Ti</div><div class="activity-subtitle">Toca cada una para leerla</div></div></div>
     <div style="display:grid;gap:12px;">
@@ -523,13 +520,11 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
       <div class="pick-card" style="aspect-ratio:auto;min-height:90px" onclick="flipCard(this)"><div class="pick-card-inner" style="min-height:90px"><div class="pick-card-front" style="background:linear-gradient(145deg,var(--rojo-oscuro),var(--negro));border:1px solid rgba(192,0,26,.4)">🤞 Promesa #4</div><div class="pick-card-back" style="background:linear-gradient(145deg,rgba(35,8,18,.98),var(--negro));border:1px solid rgba(201,168,76,.3);transform:rotateY(180deg);font-size:1rem;padding:20px;line-height:1.65">Te prometo besarte hasta que el mundo desaparezca y solo quedemos nosotros, latiendo juntos.</div></div></div>
     </div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">🌍</span><div><div class="activity-title">Lo que haremos juntos</div><div class="activity-subtitle">Nuestros planes. Gira y descubre.</div></div></div>
     <button class="roulette-btn" onclick="spinRoulette('r6', planesFuturos)">🌍 Girar</button>
     <div class="result-display" id="r6"></div>
   </div>
- 
   <div class="activity">
     <div class="activity-header"><span class="activity-icon">💋</span><div><div class="activity-title">Besitos de Buenas Noches</div><div class="activity-subtitle">Para que lleguen aunque sea de lejos</div></div></div>
     <div class="kiss-counter">
@@ -548,11 +543,9 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
   <span class="modal-day-badge">Día Siete · El Gran Final</span>
   <h2 class="modal-title">El Cofre de los Secretos 🔐</h2>
   <div class="modal-divider"></div>
- 
   <p style="font-style:italic;color:rgba(245,230,208,.7);margin-bottom:28px;line-height:1.85;font-size:1rem;">
     Al final de esta semana hay algo especial esperándote. Resuelve las 4 pistas, reúne los fragmentos de la contraseña y abre el cofre.
   </p>
- 
   <div class="puzzle-clues">
     <div class="clue-card">
       <div class="clue-number">✦ Pista 1 de 4 ✦</div>
@@ -564,7 +557,6 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
       </div>
       <div class="piece-revealed" id="piece1"><div class="piece-fragment">24D</div><div class="piece-label">Fragmento 1 encontrado ✦</div></div>
     </div>
- 
     <div class="clue-card">
       <div class="clue-number">✦ Pista 2 de 4 ✦</div>
       <p class="clue-text">«¿Hay una canción que no solo escuchamos… la sentimos, y desde ahí ya nada fue igual. 🎶»</p>
@@ -575,7 +567,6 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
       </div>
       <div class="piece-revealed" id="piece2"><div class="piece-fragment">Diseña</div><div class="piece-label">Fragmento 2 encontrado ✦</div></div>
     </div>
- 
     <div class="clue-card">
       <div class="clue-number">✦ Pista 3 de 4 ✦</div>
       <p class="clue-text">«¿No es aquí… pero es el lugar donde quiero tenerte cerca de verdad muy pronto.?»</p>
@@ -586,7 +577,6 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
       </div>
       <div class="piece-revealed" id="piece3"><div class="piece-fragment">Zina</div><div class="piece-label">Fragmento 3 encontrado ✦</div></div>
     </div>
- 
     <div class="clue-card">
       <div class="clue-number">✦ Pista 4 de 4 ✦</div>
       <p class="clue-text">«¿Y al final… el año en el que tú y yo dejamos de ser solo coincidencia.»</p>
@@ -598,7 +588,6 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
       <div class="piece-revealed" id="piece4"><div class="piece-fragment">25</div><div class="piece-label">Fragmento 4 encontrado ✦</div></div>
     </div>
   </div>
- 
   <div class="password-section">
     <div class="password-title">🔐 La Contraseña Final</div>
     <p class="password-hint">Junta los 4 fragmentos en orden, sin espacios, todo en minúsculas.</p>
@@ -619,25 +608,24 @@ Y quién sabe… tal vez algún día dejemos de imaginarlos, y empecemos a crear
   <p class="final-letter-subtitle">✦ Esta carta siempre fue tuya ✦</p>
   <div class="final-letter-paper">
     <div class="final-letter-body">
-      <!-- ✏️ EDITA LA CARTA FINAL — LA MÁS IMPORTANTE -->
-     <p>Mi amor,</p>
-     <p>Si estás leyendo esto… es porque llegaste hasta el final.</p>
-     <p>Pasaste por cada día, por cada reto, por cada palabra que fui dejando para ti. Y eso no solo me hace feliz… me confirma algo que ya sentía: lo mucho que vales, y lo especial que eres para mí.</p>
-     <p>Esta semana no fue cualquier cosa.</p>
-     <p>La hice pensando en ti en cada detalle… en lo que te hace reír, en lo que te pone nerviosa, en lo que te hace quedarte callada un segundo antes de decir algo importante.</p>
-     <p>La fui armando poco a poco, con ganas… con emoción… pero sobre todo, con todo lo que siento por ti.</p>
-     <p>Porque tú no eres solo mi novia…</p>
-     <p>Eres la persona con la que quiero algo de verdad. Algo que no se quede en mensajes, ni en momentos bonitos nada más. Algo que crezca, que aguante, que se vuelva cada vez más nuestro.</p>
-     <p>Y sí… la distancia a veces pesa.</p>
-     <p>Hay noches en las que me gustaría cambiar la pantalla por tu presencia, poder acercarme, abrazarte sin tener que despedirme después.</p>
-     <p>Pero incluso así, hay algo que nunca falla: tú.</p>
-     <p>Porque cuando hablo contigo, todo se siente más ligero… más claro… más bonito.</p>
-     <p>Te amo… pero no como una palabra que se dice y ya.</p>
-     <p>Te amo en la forma en la que pienso en ti sin darme cuenta. En cómo te vuelves parte de mis días, de mis ganas, de todo lo que quiero construir.</p>
-     <p>Y si esta semana fue mi forma de darte algo…</p>
-     <p>Lo que viene no es solo mío.</p>
-     <p>Es nuestro.</p>
-     <p>Y créeme… apenas estamos empezando. 🖤</p>
+      <p>Mi amor,</p>
+      <p>Si estás leyendo esto… es porque llegaste hasta el final.</p>
+      <p>Pasaste por cada día, por cada reto, por cada palabra que fui dejando para ti. Y eso no solo me hace feliz… me confirma algo que ya sentía: lo mucho que vales, y lo especial que eres para mí.</p>
+      <p>Esta semana no fue cualquier cosa.</p>
+      <p>La hice pensando en ti en cada detalle… en lo que te hace reír, en lo que te pone nerviosa, en lo que te hace quedarte callada un segundo antes de decir algo importante.</p>
+      <p>La fui armando poco a poco, con ganas… con emoción… pero sobre todo, con todo lo que siento por ti.</p>
+      <p>Porque tú no eres solo mi novia…</p>
+      <p>Eres la persona con la que quiero algo de verdad. Algo que no se quede en mensajes, ni en momentos bonitos nada más. Algo que crezca, que aguante, que se vuelva cada vez más nuestro.</p>
+      <p>Y sí… la distancia a veces pesa.</p>
+      <p>Hay noches en las que me gustaría cambiar la pantalla por tu presencia, poder acercarme, abrazarte sin tener que despedirme después.</p>
+      <p>Pero incluso así, hay algo que nunca falla: tú.</p>
+      <p>Porque cuando hablo contigo, todo se siente más ligero… más claro… más bonito.</p>
+      <p>Te amo… pero no como una palabra que se dice y ya.</p>
+      <p>Te amo en la forma en la que pienso en ti sin darme cuenta. En cómo te vuelves parte de mis días, de mis ganas, de todo lo que quiero construir.</p>
+      <p>Y si esta semana fue mi forma de darte algo…</p>
+      <p>Lo que viene no es solo mío.</p>
+      <p>Es nuestro.</p>
+      <p>Y créeme… apenas estamos empezando. 🖤</p>
     </div>
     <div class="final-sign">— Con todo mi amor 🌹</div>
   </div>
@@ -762,11 +750,11 @@ function checkQ(btn,correct,msg){
 // BESOS
 let kc=0;
 const kms=['','Ya con ese me alegró el día 💛','¡Otro más! Te los recibo todos 💋','Tres... me estás malacostumbrando 😏','Sigo contando... 🌙','Cinco. Los guardo todos.','Ya perdí la cuenta pero no me quejo 🔥','Sigues mandando. Yo sigo recibiendo 🖤','Eres demasiado. Y me encanta.','No pares 💌','10 besos. Eso se llama amor 🌹'];
-function addKiss(){kc++;document.getElementById('kiss-count').textContent=kc;document.getElementById('kiss-msg').textContent=kms[Math.min(kc,kms.length-1)];localStorage.setItem('kc',kc);}
+function addKiss(){kc++;document.getElementById('kiss-count').textContent=kc;document.getElementById('kiss-msg').textContent=kms[Math.min(kc,kms.length-1)];}
 let kc6=0;
 function addKiss6(){kc6++;document.getElementById('kiss-count-6').textContent=kc6;const m=['','Para ti siempre 💋','Y más... 🔥','Sin límite. Como mis ganas de ti 🖤','Ya ni cuento, solo los mando ✨'];document.getElementById('kiss-msg-6').textContent=m[Math.min(kc6,4)];}
  
-// PUZZLE — contraseña: 24DDiseñaZina25
+// PUZZLE
 const PASS='24DDiseñaZina25';
 const pcs={1:'24D',2:'Diseña',3:'Zina',4:'25'};
 let got={1:false,2:false,3:false,4:false};
@@ -787,3 +775,4 @@ const st=document.createElement('style');st.textContent='@keyframes fH{to{transf
 </script>
 </body>
 </html>
+ 
