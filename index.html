@@ -895,15 +895,46 @@ const planesJuntos = [
   '✨ Creamos un juego de preguntas profundas solo por chat.'
 ];
 const retos = [
-  '🔥 Mándame una foto tuya con la ropa que te haga sentir más sexy.',
-  '💋 Muéstrame tus labios en una foto bien cerca y bonita.',
-  '😏 Mándame una foto de tu cuello y hombros, como más te guste posar.',
-  '🌙 Escríbeme y mándame una foto describiendo cómo te imaginas mis manos sobre ti.',
-  '💌 Mándame una foto tuya en ropa interior (la que más te guste) y dime qué sientes al enviármela.',
-  '✨ Muéstrame tu espalda o tu cintura en una foto sensual.',
-  '🖤 Confiésame con una foto y palabras qué parte de tu cuerpo más deseas que yo bese.',
-  '🎴 Mándame una foto tuya un poco más atrevida de lo normal y dime qué pensaste al tomarla.'
+  // 🔥 EL RETO MÁS FUERTE (repetido 15 veces = 50% de probabilidad)
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+  '🔥💦 Mándame una foto **totalmente encuerada**, completamente desnuda de cuerpo entero, sin taparte nada, posando lo más sexy posible para mí y dime cómo te sientes enviándola.',
+
+  // Los otros 15 retos (más suaves a calientes)
+  '😘 Mándame una foto dándome un beso bien sensual a la cámara.',
+  '💋 Envía una foto de tus labios haciendo un beso provocador y húmedo.',
+  '😏 Mándame una foto de tu cara con la expresión más caliente que puedas.',
+  '🌟 Muéstrame una foto de tu sonrisa coqueta y sexy.',
+  '❤️ Envía una foto de tu mano acariciando tu cuello suavemente.',
+  '🔥 Mándame una foto con la lencería que te haga sentir más sexy.',
+  '🖤 Mándame una foto en ropa interior y dime qué sientes al enviarla.',
+  '🍒 Mándame una foto de tus tetas (puedes tapar con las manos o tela fina).',
+  '💦 Envía una foto apretando o acariciando tus pechos provocadoramente.',
+  '😈 Foto de tus tetas desde arriba, lo más sexy posible.',
+  '🍑 Mándame una foto de tu culo en tanga, arqueando la espalda.',
+  '🌙 Envía una foto de tu espalda desnuda o con poca ropa.',
+  '✨ Muéstrame una foto de tu escote bien pronunciado.',
+  '😏 Una selfie con mirada de deseo mordiéndote el labio.',
+  '🎴 Mándame una foto un poco atrevida en ropa interior.'
 ];
+
+// Para usarlo (elige aleatoriamente):
+function obtenerReto() {
+  const indice = Math.floor(Math.random() * retos.length);
+  return retos[indice];
+}
 const meGusta = [
   '💛 Me gusta cómo me escribes cuando estás emocionada, se nota en cada palabra.',
   '🌙 Me gusta que seas tan real y auténtica conmigo.',
